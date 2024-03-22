@@ -2,10 +2,13 @@ const question = document.getElementById('question')
 const questionNumber = document.getElementById('question--number')
 const quizOptionAll = document.getElementById('quiz__options')
 const btn = document.getElementById('btn')
+const btnNew = document.getElementById('btn-new')
 const quisItem = document.getElementById('quis__item')
 const quizNum = document.getElementById('quiz__num')
 const quizLength = document.getElementById('quiz__length')
 const quizSmile = document.getElementById('quiz__smile')
+const minute = document.getElementById('min')
+const second = document.getElementById('sec')
 
 let count = 0
 let total = 0
@@ -81,3 +84,41 @@ function blocksBtn() {
     btn.style.opacity = '0.5'
     btn.style.cursor = 'default'
 }
+
+let intervalId
+
+function timer() {
+    clearInterval(intervalId)
+    
+    intervalId = setInterval( () => {
+        
+        if (Number(second.innerHTML) === 0) {
+            second.innerHTML = 60
+            minute.innerHTML = Number(minute.innerHTML) - 1
+        }
+        
+        second.innerHTML = Number(second.innerHTML) - 1
+        
+        if (second.innerHTML < 10) {
+            second.innerHTML = '0' + second.innerHTML
+        }
+        
+        if (Number(minute.innerHTML) < 0 || Number(second.innerHTML) < 1) {
+            minute.innerHTML = '0'
+            second.innerHTML = '00'
+            
+            clearInterval(intervalId)
+            
+            questionNumber.innerHTML = ''
+            quizOptionAll.innerHTML = ''
+            quisItem.innerHTML = ''
+            question.innerHTML = `Время вышло, ваш результат ${correctAnswer} из ${data.length}`
+            document.querySelector('body').style.justifyContent='center'
+            btnNew.style.display='block'
+            
+            btnNew.addEventListener('click', () => { location.reload() }) //Обновить страницу
+        }   
+    }, 1000)
+}
+
+timer()
