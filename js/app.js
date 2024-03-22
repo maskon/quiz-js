@@ -32,6 +32,9 @@ btn.addEventListener('click', () => {
         quizSmile.style.display = 'block'
         question.innerHTML = `Тест окончен ваш результат ${correctAnswer} из ${data.length}`
         quisItem.innerHTML = ''
+        btnNew.style.display='block'   
+        
+        btnNew.addEventListener('click', () => { location.reload() }) //Обновить страницу
     }
 })
 
@@ -103,7 +106,7 @@ function timer() {
             second.innerHTML = '0' + second.innerHTML
         }
         
-        if (Number(minute.innerHTML) < 0 && Number(second.innerHTML) < 1) {
+        if (Number(minute.innerHTML) < 1 && Number(second.innerHTML) < 1) {
             minute.innerHTML = '0'
             second.innerHTML = '00'
             
