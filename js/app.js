@@ -103,7 +103,7 @@ function timer() {
             second.innerHTML = '0' + second.innerHTML
         }
         
-        if (Number(minute.innerHTML) < 0 || Number(second.innerHTML) < 1) {
+        if (Number(minute.innerHTML) < 0 && Number(second.innerHTML) < 1) {
             minute.innerHTML = '0'
             second.innerHTML = '00'
             
